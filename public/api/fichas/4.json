@@ -1,0 +1,8 @@
+{
+    "id": 4,
+    "nombre": "Casco de piloto",
+    "fabricante": "Taller de Kuma",
+    "descripcion": "Casco presurizado con visor de datos y radio de corto alcance. Kuma revisa el sello de cada unidad antes de ponerla en el mostrador.",
+    "compatibilidad": ["Cualquier nave con cabina presurizada"],
+    "stock": 9
+}

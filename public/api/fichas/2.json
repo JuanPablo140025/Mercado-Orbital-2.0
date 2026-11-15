@@ -1,0 +1,8 @@
+{
+    "id": 2,
+    "nombre": "Escudo deflector",
+    "fabricante": "Astilleros Umbral",
+    "descripcion": "Barrera de energía que desvía micrometeoritos y descargas pequeñas. Se instala en el casco y se calibra desde el panel de la cabina.",
+    "compatibilidad": ["Caza Lince", "Carguero Tortuga"],
+    "stock": 7
+}

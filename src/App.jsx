@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import Encabezado from "./components/Encabezado.jsx";
-import TarjetaProducto from "./components/TarjetaProducto.jsx";
+import Catalogo from "./components/Catalogo.jsx";
 import PanelCarrito from "./components/PanelCarrito.jsx";
 import Aviso from "./components/Aviso.jsx";
 import OfertaRelampago from "./components/OfertaRelampago.jsx";
-import { productos } from "./data/productos.js";
+import FichaProducto from "./components/FichaProducto.jsx";
+
+const URL_CATALOGO = "/api/productos.json";
 
 function App() {
     // Estado de la tienda
@@ -14,6 +16,38 @@ function App() {
 
     // Estado elevado para la oferta relámpago (Ticket 1 + Extra)
     const [segundosOferta, setSegundosOferta] = useState(60);
+
+    // ===== Ticket 1 · El catálogo llega del servidor (Misión 39) =====
+    const [productos, setProductos] = useState([]);
+    const [cargando, setCargando] = useState(true);
+    const [error, setError] = useState("");
+
+    // Estado para la ficha técnica (Home Challenge)
+    const [fichaId, setFichaId] = useState(null);
+
+    async function cargarCatalogo() {
+        setCargando(true);
+        setError("");
+
+        try {
+            const response = await fetch(URL_CATALOGO);
+
+            if (!response.ok) {
+                throw new Error(`El servidor respondió ${response.status}`);
+            }
+
+            const datos = await response.json();
+            setProductos(datos);
+        } catch (e) {
+            setError(e.message);
+        } finally {
+            setCargando(false);
+        }
+    }
+
+    useEffect(() => {
+        cargarCatalogo();
+    }, []);
 
     // Calculamos el catálogo con el descuento activo si quedan segundos (Extra)
     const ofertaActiva = segundosOferta > 0;
@@ -61,11 +95,12 @@ function App() {
         return () => clearTimeout(id);
     }, [aviso]);
 
-    // Ticket Clase 3 · Escape cierra el carrito
+    // Ticket Clase 3 · Escape cierra el carrito o la ficha
     useEffect(() => {
         function manejarTecla(e) {
             if (e.key === "Escape") {
                 setCarritoAbierto(false);
+                setFichaId(null);
             }
         }
 
@@ -73,6 +108,19 @@ function App() {
 
         return () => window.removeEventListener("keydown", manejarTecla);
     }, []);
+
+    // Extra L1 · La tecla C abre y cierra el carrito
+    useEffect(() => {
+        function alternarConC(e) {
+            if (e.key === "c" || e.key === "C") {
+                setCarritoAbierto(!carritoAbierto);
+            }
+        }
+
+        window.addEventListener("keydown", alternarConC);
+
+        return () => window.removeEventListener("keydown", alternarConC);
+    }, [carritoAbierto]);
 
     return (
         <div className="app">
@@ -95,15 +143,15 @@ function App() {
                 setSegundos={setSegundosOferta}
             />
 
-            <main className="catalogo">
-                {catalogoActual.map((producto) => (
-                    <TarjetaProducto
-                        key={producto.id}
-                        producto={producto}
-                        onAgregar={agregarAlCarrito}
-                    />
-                ))}
-            </main>
+            {/* Catálogo con manejo de estados y botón de ficha */}
+            <Catalogo
+                productos={catalogoActual}
+                cargando={cargando}
+                error={error}
+                onReintentar={cargarCatalogo}
+                onAgregar={agregarAlCarrito}
+                onVerFicha={(id) => setFichaId(id)}
+            />
 
             <Aviso mensaje={aviso} />
 
@@ -113,6 +161,14 @@ function App() {
                     total={totalPrecio}
                     onCerrar={() => setCarritoAbierto(false)}
                     onQuitar={quitarDelCarrito}
+                />
+            )}
+
+            {fichaId !== null && (
+                <FichaProducto
+                    id={fichaId}
+                    onCerrar={() => setFichaId(null)}
+                    onAgregar={agregarAlCarrito}
                 />
             )}
         </div>

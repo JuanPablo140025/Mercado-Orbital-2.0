@@ -1,0 +1,8 @@
+{
+    "id": 6,
+    "nombre": "Radar de largo alcance",
+    "fabricante": "Laboratorios Nébula",
+    "descripcion": "Antena de rastreo que detecta objetos a varias horas de distancia. Muestra los resultados en el mapa de la cabina con etiquetas de tamaño y velocidad.",
+    "compatibilidad": ["Explorador Mirlo", "Carguero Tortuga"],
+    "stock": 3
+}

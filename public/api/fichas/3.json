@@ -1,0 +1,8 @@
+{
+    "id": 3,
+    "nombre": "Batería de plasma",
+    "fabricante": "Laboratorios Nébula",
+    "descripcion": "Celda de energía de respaldo para sistemas de soporte vital y luces de emergencia. Se recarga en el muelle de la estación en menos de una hora.",
+    "compatibilidad": ["Caza Lince", "Explorador Mirlo", "Lanzadera Colibrí", "Carguero Tortuga"],
+    "stock": 12
+}

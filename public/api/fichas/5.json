@@ -1,0 +1,8 @@
+{
+    "id": 5,
+    "nombre": "Kit de reparación",
+    "fabricante": "Taller de Kuma",
+    "descripcion": "Caja con parches de casco, sellador y herramientas básicas para arreglos en pleno vuelo. Pensado para pilotos que viajan lejos de cualquier hangar.",
+    "compatibilidad": ["Todas las naves"],
+    "stock": 15
+}

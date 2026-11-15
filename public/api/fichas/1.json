@@ -1,0 +1,8 @@
+{
+    "id": 1,
+    "nombre": "Motor de iones",
+    "fabricante": "Forja Orbital Vega",
+    "descripcion": "Motor principal de empuje continuo para naves de tamaño medio. Consume poco combustible y aguanta meses de vuelo sin mantenimiento.",
+    "compatibilidad": ["Carguero Tortuga", "Explorador Mirlo", "Lanzadera Colibrí"],
+    "stock": 4
+}

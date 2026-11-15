@@ -1,0 +1,8 @@
+{
+    "id": 7,
+    "nombre": "Propulsor turbo",
+    "fabricante": "Forja Orbital Vega",
+    "descripcion": "Impulsor secundario para arranques rápidos y maniobras cortas. Se monta junto al motor principal y se activa desde la palanca de la cabina.",
+    "compatibilidad": ["Caza Lince", "Lanzadera Colibrí"],
+    "stock": 6
+}

@@ -1,0 +1,8 @@
+{
+    "id": 8,
+    "nombre": "Cristal Bit",
+    "fabricante": "Astilleros Umbral",
+    "descripcion": "Núcleo de energía de alta pureza que alimenta los sistemas de salto de la nave. Llega a la estación una vez al mes y se agota el mismo día.",
+    "compatibilidad": ["Explorador Mirlo", "Caza Lince"],
+    "stock": 0
+}
